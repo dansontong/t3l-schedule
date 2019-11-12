@@ -1,0 +1,42 @@
+/* miniprogram/pages/login.wxss */
+
+page{
+  height: 100%;
+  background-size:100%;
+  background-image: url('https://746f-todos-yxw5y-1300659997.tcb.qcloud.la/image/background.jpg?sign=b6d6dd10f529a9ef9e7e95a850b8a11f&t=1573475776');
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.title_con {
+margin-top: 90px;
+text-align: center;
+flex: auto;
+height:50%;
+}
+.title{
+  font-size: 80rpx;
+  color:white;
+}
+.btn_con {
+margin-top: 50px;
+flex: auto;
+height:100%;
+}
+
+.loginBtn {
+  width: 90%;
+  height: 80rpx;
+  color: #fff;
+  background-color:#b1a69f;
+  border: 0.1rpx solid #ccc;
+  border-radius: 40rpx;
+  text-align: center;
+}
+
