@@ -1,10 +1,12 @@
 // miniprogram/pages/schedule.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    list: []
 
   },
 
@@ -12,8 +14,40 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.initData();
   },
+  initData() {
+    let _data = [{
+      id: 0,
+      avatar: 'http://wx.qlogo.cn/mmopen/vi_32/WN9VhW4rxITMAS4l0v5Ov3ta9lFZmbUujcTzfIVAVkibEQSu2BxmBzeXRMbm2OgjzWObQ7xM8U0Voia4XMP14IsA/132',
+      userName: 'Wginit',
+      desc: '白山羊'
+    }, {
+      id: 1,
+      avatar: 'http://wx.qlogo.cn/mmopen/vi_32/WN9VhW4rxITMAS4l0v5Ov3ta9lFZmbUujcTzfIVAVkibEQSu2BxmBzeXRMbm2OgjzWObQ7xM8U0Voia4XMP14IsA/132',
+      userName: 'Wginit',
+      desc: '一只白山羊'
+      }, {
+        id: 2,
+        avatar: 'http://wx.qlogo.cn/mmopen/vi_32/WN9VhW4rxITMAS4l0v5Ov3ta9lFZmbUujcTzfIVAVkibEQSu2BxmBzeXRMbm2OgjzWObQ7xM8U0Voia4XMP14IsA/132',
+        userName: 'Wginit',
+        desc: '一只白山羊'
+      }, {
+        id: 3,
+        avatar: 'http://wx.qlogo.cn/mmopen/vi_32/WN9VhW4rxITMAS4l0v5Ov3ta9lFZmbUujcTzfIVAVkibEQSu2BxmBzeXRMbm2OgjzWObQ7xM8U0Voia4XMP14IsA/132',
+        userName: 'Wginit',
+        desc: '一只白山羊'
+      }, {
+        id: 4,
+        avatar: 'http://wx.qlogo.cn/mmopen/vi_32/WN9VhW4rxITMAS4l0v5Ov3ta9lFZmbUujcTzfIVAVkibEQSu2BxmBzeXRMbm2OgjzWObQ7xM8U0Voia4XMP14IsA/132',
+        userName: 'Wginit',
+        desc: '一只白山羊'
+      }]
+    this.setData({
+      list: _data
+    })
+  },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -111,5 +145,32 @@ Page({
    */
   afterCalendarRender(e) {
     console.log('afterCalendarRender', e);
+  },
+  // 跳转至详情页
+  jumpToDetail(e) {
+    console.log(e.detail)
+    let _id = e.detail
+    if (e.detail == '') {
+      return
+    }
+  },
+  // 删除成员
+  remove(e) {
+    let that = this
+    let { list } = that.data
+    let _index = e.detail
+    console.log(_index)
+    wx.showModal({
+      content: '确认删除吗?',
+      confirmText: '删除',
+      success: function (res) {
+        if (res.confirm) {
+          list.splice(_index, 1)
+          that.setData({
+            list
+          })
+        }
+      }
+    })
   }
 })

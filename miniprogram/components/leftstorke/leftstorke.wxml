@@ -1,0 +1,16 @@
+<view class="content">
+  <view class="list-item" wx:for="{{list}}" wx:key="{{index}}" data-id="{{item.id}}" style="position:alsolute; {{item.txtStyle}}">
+    <view class="item" bindtap="jumpToDetail" bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE"  data-index="{{index}}" data-id="{{item.id}}">
+      <view class="image">
+        <image src="{{item.avatar}}"></image>
+      </view>
+      <view class="info">
+        <view class="title">{{item.userName}}</view>
+        <view class="desc">{{item.desc}}</view>
+      </view>
+    </view>
+    <view class="item-option" style="width: {{buttonWidth}}rpx; right: -{{buttonWidth}}rpx">
+      <view class="cancel" data-index="{{index}}" catchtap="option">{{optionText}}</view>
+    </view>
+  </view>
+</view>

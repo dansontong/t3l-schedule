@@ -8,3 +8,10 @@
   bind:whenChangeMonth="whenChangeMonth"
   bind:afterCalendarRender="afterCalendarRender"
 ></calendar>
+<Left-Storke 
+    list="{{list}}"
+    optionText ="删除"
+    bindjump="jumpToDetail"
+    bindoption="remove">
+</Left-Storke>
+
