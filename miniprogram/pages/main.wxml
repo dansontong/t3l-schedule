@@ -1,0 +1,4 @@
+<!--miniprogram/pages/main.wxml-->
+<view style="height: 100vh-100px">
+  <chat bind:backhome="goBackHome" />
+</view>

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "calendar": "/components/calendar/index",
+    "Left-Storke": "/components/leftstorke/leftstorke"
+  }
+}

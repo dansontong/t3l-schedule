@@ -1,0 +1,44 @@
+{
+  "pages": [
+    "pages/login",
+    "pages/main",
+    "pages/schedule"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "个人日程语音助手",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "selectedColor": "#068047",
+    "list": [
+      {
+        "pagePath": "pages/main",
+        "text": "语音助手",
+        "iconPath": "/images/chat-not.png",
+        "selectedIconPath": "/images/chat.png"
+      },
+      {
+        "pagePath": "pages/schedule",
+        "text": "日程管理",
+        "iconPath": "/images/calendar-not.png",
+        "selectedIconPath": "/images/calendar.png"
+      }
+    ]
+  },
+  "plugins": {
+    "chatbot": {
+      "version": "1.1.8",
+      "provider": "wx8c631f7e9f2465e1"
+    },
+    "WechatSI": {
+      "version": "0.3.1",
+      "provider": "wx069ba97219f66d99"
+    }
+  },
+  "requireBackgroundModes": ["audio"],
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

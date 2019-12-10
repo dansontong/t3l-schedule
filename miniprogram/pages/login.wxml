@@ -1,0 +1,11 @@
+<!--miniprogram/pages/login.wxml-->
+
+<view class="container">
+<view class="title_con">
+<text class="title">个人日程语音助手</text>
+</view>
+<view class="btn_con">
+<button class="loginBtn" bindgetuserinfo="bindGetUserInfo" size="{{primarySize}}" open-type="getUserInfo">授权登录</button>
+</view>
+</view>
+
