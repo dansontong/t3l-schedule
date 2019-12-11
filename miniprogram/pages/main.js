@@ -1,11 +1,8 @@
 // miniprogram/pages/main.js
 Page({
 
-  // goBackHome回调 返回上一级页面
-  goBackHome: function () {
-    wx.navigateBack({
-      delta: 1
-    })
+  // getQueryCallback回调, 返回数据
+  getQueryCallback: function (e) {
   },
 
   /**

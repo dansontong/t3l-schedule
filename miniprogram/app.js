@@ -22,10 +22,11 @@ App({
       appid: "rRuWKYdYZ2cwPpJ37nesiRhWXsOasG",
       success: () => { },
       fail: error => { },
-      guideList: ["北京天气怎么样", "上海今天有雨吗", "中午吃啥呢", "周杰伦的歌"],
+      guideList: ["新增日程", "北京天气怎么样", "来一段郭德纲的相声", "中午吃啥呢"],
       textToSpeech: true,
-      welcome: "darling, i am feifei",
-      background: "rgba(247, 251, 252, 1)"
+      welcome: "Darling, I am Fei Fei",
+      background: "rgba(247, 251, 252, 1)",
+      operateCardHeight: 120,
     });
 
     this.globalData = {}

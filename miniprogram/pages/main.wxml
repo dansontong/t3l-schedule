@@ -1,4 +1,5 @@
 <!--miniprogram/pages/main.wxml-->
-<view style="height: 100vh-100px">
-  <chat bind:backhome="goBackHome" />
+<view style="height: 100vh">
+  <chat bind:queryCallback="getQueryCallback"
+        cover-image src="../images/MC.jpg" />
 </view>
