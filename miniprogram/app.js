@@ -1,4 +1,6 @@
 //app.js
+var plugin = requirePlugin("chatbot");
+
 App({
   onLaunch: function () {
     
@@ -12,8 +14,20 @@ App({
         //   如不填则使用默认环境（第一个创建的环境）
         // env: 'my-env-id',
         traceUser: true,
-      })
+      });
     }
+
+    console.log(plugin, "+++");
+    plugin.init({
+      appid: "rRuWKYdYZ2cwPpJ37nesiRhWXsOasG",
+      success: () => { },
+      fail: error => { },
+      guideList: ["新增日程", "北京天气怎么样", "来一段郭德纲的相声", "中午吃啥呢"],
+      textToSpeech: true,
+      welcome: "Darling, I am Fei Fei",
+      background: "rgba(247, 251, 252, 1)",
+      operateCardHeight: 130,
+    });
 
     this.globalData = {}
   }

@@ -1,6 +1,10 @@
 // miniprogram/pages/main.js
 Page({
 
+  // getQueryCallback回调, 返回数据
+  getQueryCallback: function (e) {
+  },
+
   /**
    * 页面的初始数据
    */
