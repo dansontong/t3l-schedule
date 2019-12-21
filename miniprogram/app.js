@@ -30,5 +30,14 @@ App({
     });
 
     this.globalData = {}
-  }
+  },
+  getOpenid() {
+    let that = this;
+    wx.cloud.callFunction({
+      name: 'openid',
+      complete: res => {
+        return res.result.openid
+      }
+    })
+  },
 })

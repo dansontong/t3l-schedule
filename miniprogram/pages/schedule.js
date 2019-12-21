@@ -181,9 +181,10 @@ Page({
   },
   addschedule:function()
   {
+    let userid=app.getOpenid();
     const db = wx.cloud.database()
     db.collection('temp').where({
-      _openid: 'o8_vX5QbchBBbRAldtb7jV0CzJkQ' // 填入当前用户 openid
+      _openid: userid // 填入当前用户 openid
     }).get('<starttime>','<endtime>','<position>','<event>').then(res => {     
         this.setData({
           ['newschedule.starttime']: res.data[0].starttime,
