@@ -6,8 +6,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list: []
-
+    list: [],
+    newschedule:{
+      starttime: "",
+      endtime: "",
+      event: "",
+      position: ""
+    },
   },
 
   /**
@@ -15,6 +20,7 @@ Page({
    */
   onLoad: function (options) {
     this.initData();
+    this.addschedule();
   },
   initData() {
     let _data = [{
@@ -172,5 +178,42 @@ Page({
         }
       }
     })
+  },
+  addschedule:function()
+  {
+    const db = wx.cloud.database()
+    db.collection('temp').where({
+      _openid: 'o8_vX5QbchBBbRAldtb7jV0CzJkQ' // 填入当前用户 openid
+    }).get('<starttime>','<endtime>','<position>','<event>').then(res => {     
+        this.setData({
+          ['newschedule.starttime']: res.data[0].starttime,
+          ['newschedule.endtime']: res.data[0].endtime,
+          ['newschedule.event']:res.data[0].event,
+          ['newschedule.position']: res.data[0].position        
+        })
+      console.log(this.data.newschedule);
+      db.collection('todo_list').add({
+        data: {
+          starttime: this.data.newschedule.starttime,
+          endtime: this.data.newschedule.endtime,
+          event: this.data.newschedule.event,
+          position: this.data.newschedule.position
+
+        },
+
+        success: res => {
+          // 在返回结果中会包含新创建的记录的 _id
+
+          console.log('[数据库] [新增记录] 成功，记录 _id: ', res._id)
+        },
+        fail: err => {
+          console.error('[数据库] [新增记录] 失败：', err)
+        }
+      })
+    })
+
+
+
   }
+  
 })
