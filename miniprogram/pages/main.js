@@ -3,6 +3,12 @@ Page({
 
   // getQueryCallback回调, 返回数据
   getQueryCallback: function (e) {
+    console.log('6666')
+    var strRet = e.detail.data.answer
+    if (-1 != strRet.indexOf('新增日程信息如下')){
+      console.log(e.detail.data.answer)
+    }
+    console.log('7777')
   },
 
   /**
