@@ -7,48 +7,15 @@ Page({
    */
   data: {
     list: [],
-    newschedule:{
-      starttime: "",
-      endtime: "",
-      event: "",
-      position: ""
-    },
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.initData();
-    this.addschedule();
   },
-  initData() {
-    let _data = [{
-      id: 0,
-      avatar: 'http://wx.qlogo.cn/mmopen/vi_32/WN9VhW4rxITMAS4l0v5Ov3ta9lFZmbUujcTzfIVAVkibEQSu2BxmBzeXRMbm2OgjzWObQ7xM8U0Voia4XMP14IsA/132',
-      userName: 'Wginit',
-      desc: '白山羊'
-    }, {
-      id: 1,
-      avatar: 'http://wx.qlogo.cn/mmopen/vi_32/WN9VhW4rxITMAS4l0v5Ov3ta9lFZmbUujcTzfIVAVkibEQSu2BxmBzeXRMbm2OgjzWObQ7xM8U0Voia4XMP14IsA/132',
-      userName: 'Wginit',
-      desc: '一只白山羊'
-      }, {
-        id: 2,
-        avatar: 'http://wx.qlogo.cn/mmopen/vi_32/WN9VhW4rxITMAS4l0v5Ov3ta9lFZmbUujcTzfIVAVkibEQSu2BxmBzeXRMbm2OgjzWObQ7xM8U0Voia4XMP14IsA/132',
-        userName: 'Wginit',
-        desc: '一只白山羊'
-      }, {
-        id: 3,
-        avatar: 'http://wx.qlogo.cn/mmopen/vi_32/WN9VhW4rxITMAS4l0v5Ov3ta9lFZmbUujcTzfIVAVkibEQSu2BxmBzeXRMbm2OgjzWObQ7xM8U0Voia4XMP14IsA/132',
-        userName: 'Wginit',
-        desc: '一只白山羊'
-      }, {
-        id: 4,
-        avatar: 'http://wx.qlogo.cn/mmopen/vi_32/WN9VhW4rxITMAS4l0v5Ov3ta9lFZmbUujcTzfIVAVkibEQSu2BxmBzeXRMbm2OgjzWObQ7xM8U0Voia4XMP14IsA/132',
-        userName: 'Wginit',
-        desc: '一只白山羊'
-      }]
+  initData(_data) {
+   
     this.setData({
       list: _data
     })
@@ -110,6 +77,21 @@ Page({
    */
   afterTapDay(e) {
     console.log('afterTapDay', e.detail); // => { currentSelect: {}, allSelectedDays: [] }
+    wx.cloud.callFunction({
+      name: 'search',
+      data: {
+        year: e.detail.year,
+        month: e.detail.month,
+        day: e.detail.day,
+
+      },
+      complete: res => {
+        this.initData(res.result)
+        
+      }
+    })
+
+
   },
   /**
    * 当日历滑动时触发(适用于周/月视图)
@@ -179,42 +161,5 @@ Page({
       }
     })
   },
-  addschedule:function()
-  {
-    let userid=app.getOpenid();
-    const db = wx.cloud.database()
-    db.collection('temp').where({
-      _openid: userid // 填入当前用户 openid
-    }).get('<starttime>','<endtime>','<position>','<event>').then(res => {     
-        this.setData({
-          ['newschedule.starttime']: res.data[0].starttime,
-          ['newschedule.endtime']: res.data[0].endtime,
-          ['newschedule.event']:res.data[0].event,
-          ['newschedule.position']: res.data[0].position        
-        })
-      console.log(this.data.newschedule);
-      db.collection('todo_list').add({
-        data: {
-          starttime: this.data.newschedule.starttime,
-          endtime: this.data.newschedule.endtime,
-          event: this.data.newschedule.event,
-          position: this.data.newschedule.position
-
-        },
-
-        success: res => {
-          // 在返回结果中会包含新创建的记录的 _id
-
-          console.log('[数据库] [新增记录] 成功，记录 _id: ', res._id)
-        },
-        fail: err => {
-          console.error('[数据库] [新增记录] 失败：', err)
-        }
-      })
-    })
-
-
-
-  }
   
 })
