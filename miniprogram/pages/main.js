@@ -1,4 +1,7 @@
 // miniprogram/pages/main.js
+var plugin = requirePlugin("chatbot");
+const chat = plugin.getChatComponent();
+
 Page({
 
   // getQueryCallback回调, 返回数据
@@ -26,6 +29,17 @@ Page({
       })
  
     }
+  },
+
+  // goBackHome回调 返回上一级页面
+  goBackHome: function () {
+    /*wx.redirectTo({
+      url: '../pages/schedule'
+    })*/
+    this.setData({
+      sound: !this.data.sound
+    })
+    plugin.setTextToSpeech(!this.data.sound)
   },
 
   /**

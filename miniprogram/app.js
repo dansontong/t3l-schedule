@@ -22,11 +22,13 @@ App({
       appid: "rRuWKYdYZ2cwPpJ37nesiRhWXsOasG",
       success: () => { },
       fail: error => { },
-      guideList: ["新增日程", "北京天气怎么样", "来一段郭德纲的相声", "中午吃啥呢"],
+      guideList: ["小小", "北京天气怎么样", "你叫什么呀"],
       textToSpeech: true,
-      welcome: "Darling, I am Fei Fei",
+      welcome: "Darling, I am 妃妃, 可以帮您管理日程、查询天气，也可以陪您聊天哦~",
       background: "rgba(247, 251, 252, 1)",
+      //background: "url('https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1747765195,2131793807&fm=26&gp=0.jpg')",
       operateCardHeight: 130,
+      //guideCardHeight: 80
     });
 
     this.globalData = {}
