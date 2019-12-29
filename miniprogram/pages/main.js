@@ -29,6 +29,25 @@ Page({
       })
  
     }
+    else if (-1 != strRet.indexOf('已删除以下日程'))
+    {
+      console.log(e.detail.data.answer)
+      var str = e.detail.data.answer
+      var delete1 = '已删除以下日程：'
+      var delete2 = '的日程'
+      var end = str.indexOf(delete2)
+      var userName = str.substring(delete1.length, end - 1)
+      console.log(userName)
+      wx.cloud.callFunction({
+        name: 'delete',
+        data: {
+          userName: userName,
+        },
+        complete: res => {
+          console.log('callFunction test result: ', res)
+        }
+      })
+    }
   },
 
   // goBackHome回调 返回上一级页面

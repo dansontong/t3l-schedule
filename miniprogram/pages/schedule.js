@@ -147,16 +147,29 @@ Page({
     let that = this
     let { list } = that.data
     let _index = e.detail
-    console.log(_index)
+    
     wx.showModal({
       content: '确认删除吗?',
       confirmText: '删除',
       success: function (res) {
         if (res.confirm) {
+          wx.cloud.callFunction({
+            name: 'delete',
+            data: {
+              userName: list[_index].userName
+
+            },
+            complete: res => {
+              console.log(_index)
+            }
+          })
           list.splice(_index, 1)
           that.setData({
             list
           })
+          
+
+
         }
       }
     })

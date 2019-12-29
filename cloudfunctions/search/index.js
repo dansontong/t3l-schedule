@@ -5,18 +5,28 @@ cloud.init()
 const db = cloud.database()
 // 云函数入口函数
 exports.main = async (event, context) => {
-  
+  const wxContext = cloud.getWXContext()
   let list=await db.collection('todo_list').get()
+  let kindlist = await db.collection('todos_identify').get()
+  let kinds = kindlist.data
   let allist = list.data
   let todos = []
   for (var i = 0; i < allist.length; i++) {
-
+   
     let myDate=new Date(allist[i].starttime)
-    if ((myDate.getFullYear() == event.year) && ((myDate.getMonth() + 1) == event.month) && (myDate.getDate() == event.day)) {
-
+    if ((myDate.getFullYear() == event.year) && ((myDate.getMonth() + 1) == event.month) && (myDate.getDate() == event.day) && (allist[i]._openid == wxContext.OPENID)) {
+      let pic=''    
+      for (var j=0;j<kinds.length;j++)
+      {
+        if (kinds[j].name == allist[i].eventname)
+        {
+          pic = kinds[j].pic
+          break;
+        }
+      }
       var todo = {
         id: i,
-        avatar: 'http://wx.qlogo.cn/mmopen/vi_32/WN9VhW4rxITMAS4l0v5Ov3ta9lFZmbUujcTzfIVAVkibEQSu2BxmBzeXRMbm2OgjzWObQ7xM8U0Voia4XMP14IsA/132',
+        avatar: pic,
         userName: allist[i].starttime,
         desc: allist[i].eventname
       }
