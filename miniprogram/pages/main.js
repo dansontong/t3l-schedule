@@ -36,12 +36,12 @@ Page({
       var delete1 = '已删除以下日程：'
       var delete2 = '的日程'
       var end = str.indexOf(delete2)
-      var userName = str.substring(delete1.length, end - 1)
-      console.log(userName)
+      var userName = str.substring(delete1.length+1, end)
+      console.log('delete',userName)
       wx.cloud.callFunction({
         name: 'delete',
         data: {
-          userName: userName,
+          userName: userName
         },
         complete: res => {
           console.log('callFunction test result: ', res)

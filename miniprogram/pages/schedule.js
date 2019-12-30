@@ -160,6 +160,7 @@ Page({
 
             },
             complete: res => {
+              console.log('callFunction test result: ', res)
               console.log(_index)
             }
           })
